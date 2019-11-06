@@ -23,7 +23,7 @@ function download (repo, dest, opts, fn) {
     opts = null
   }
   opts = opts || {}
-  var clone = opts.clone || false
+  var clone = true
   delete opts.clone
 
   repo = normalize(repo)
@@ -87,7 +87,7 @@ function normalize (repo) {
   } else {
     regex = /^(?:(github|gitlab|bitbucket|gitee):)?(?:(.+):)?([^/]+)\/([^#]+)(?:#(.+))?$/
     match = regex.exec(repo)
-    var type = match[1] || 'github'
+    var type = match[1] || 'gitee'
     var origin = match[2] || null
     var owner = match[3]
     var name = match[4]
@@ -125,7 +125,7 @@ function normalize (repo) {
 function addProtocol (origin, clone) {
   if (!/^(f|ht)tps?:\/\//i.test(origin)) {
     if (clone) {
-      origin = 'git@' + origin
+      origin = 'https://' + origin
     } else {
       origin = 'https://' + origin
     }
@@ -155,6 +155,7 @@ function getUrl (repo, clone) {
   // Build url
   if (clone) {
     url = origin + repo.owner + '/' + repo.name + '.git'
+	console.log(url)
   } else {
     if (repo.type === 'github') {
       url = origin + repo.owner + '/' + repo.name + '/archive/' + repo.checkout + '.zip'

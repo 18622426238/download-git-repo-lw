@@ -1,6 +1,6 @@
 {
   "name": "npm-gitee-lw",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "repository": "gitlab:flippidippi/download-git-repo",
   "description": "Download and extract a git repository (GitHub, GitLab, Bitbucket,Gitee) from node.",
